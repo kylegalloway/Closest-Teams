@@ -23,6 +23,8 @@ Options available:
 * ncaafbs
 * ncaafcs
 
+Colors from [here](https://teamcolorcodes.com/nfl-team-color-codes/). I tried to use contrasting in most places.
+
 ## Examples of output
 
 ### NFL

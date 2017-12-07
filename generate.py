@@ -3,82 +3,67 @@ import sys
 import geopy.distance
 import pandas as pd
 
-
-class Team:
-    def __init__(self, name, lat, lon, color):
-        self.name = name
-        self.lat = lat
-        self.lon = lon
-        self.color = color
-        self.closest = []
-
-    def location(self):
-        return (self.lat, self.lon)
-
-    def __str__(self):
-        return self.name + ' : (' + str(self.lat) + ', ' + str(self.lon) + '), ' + self.color
+from mapchart import Path, Group, MapchartJson
 
 
-class County:
+class NamedLocation:
     def __init__(self, name, lat, lon):
         self.name = name
         self.lat = lat
         self.lon = lon
-        self.closest = None
 
     def location(self):
         return (self.lat, self.lon)
 
     def __str__(self):
-        if(self.closest):
-            return self.name + ' : (' + str(self.lat) + ', ' + str(self.lon) + ') : ' + self.closest
+        return self.name + ' : (' + str(self.lat) + ', ' + str(self.lon) + ')'
+
+
+class Team(NamedLocation):
+    def __init__(self, name, lat, lon, color):
+        super().__init__(name, lat, lon)
+        self.color = color
+        self.closest_counties = []
+
+    def __str__(self):
+        return super().__str__() + ', ' + self.color
+
+
+class County(NamedLocation):
+    def __init__(self, name, lat, lon):
+        super().__init__(name, lat, lon)
+        self.closest_team = None
+
+    def __str__(self):
+        if self.closest_team:
+            return super().__str__() + ' : ' + self.closest_team
         else:
-            return self.name + ' : (' + str(self.lat) + ', ' + str(self.lon) + ') '
+            return super().__str__()
 
 
 def set_closest_team(teams, counties):
     for county in counties:
-        county.closest = teams[0]
+        county.closest_team = teams[0]
         for team in teams:
             new_distance = geopy.distance.VincentyDistance(
                 county.location(), team.location()).km
             old_distance = geopy.distance.VincentyDistance(
-                county.location(), county.closest.location()).km
+                county.location(), county.closest_team.location()).km
             if new_distance <= old_distance:
-                county.closest = team
-        # This assigns the county to the closest team to the county
-        county.closest.closest.append(county)
+                county.closest_team = team
+        # This adds the county to the closest team's list of closest_counties
+        county.closest_team.closest_counties.append(county)
 
 
 def generate_mapchart_json(teams):
-    """
-    {
-    "groups": {
-        "#cc3333": {
-            "div": "#box0",
-            "label": "",
-            "paths": [
-                "New_Castle__DE",
-                "Sussex__DE",
-                "Kent__DE"
-            ]
-        },
-        "title": "",
-        "hidden": [],
-        "borders": "#000000"
-    }
-    """
-    outstring = '{"groups": {'
+    groups = []
     for i, team in enumerate(teams):
-        outstring += '"' + team.color +  '":{"div":"#box' +  str(i) +  '","label":"' + team.name +  '","paths":['
-        if len(team.closest) > 0:
-            for county in team.closest:
-                outstring += '"' + county.name + '",'
-            outstring = outstring[:-1]
-        outstring += ']},'
-    outstring = outstring[:-1]
-    outstring += '},"title":"","hidden":[],"borders":"#000000"}'
-    return outstring
+        paths = []
+        for county in team.closest_counties:
+            paths.append(Path(county.name))
+        groups.append(Group(team.name, team.color, i, paths))
+
+    return MapchartJson(groups)
 
 
 def run(filepath):
@@ -90,7 +75,7 @@ def run(filepath):
 
     set_closest_team(teams, counties)
     mapchart = generate_mapchart_json(teams)
-    print(mapchart)
+    print(str(mapchart))
 
 
 def file_name_from_league(league):

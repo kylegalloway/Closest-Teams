@@ -22,3 +22,33 @@ Options available:
 * mls
 * ncaafbs
 * ncaafcs
+
+## Examples of output
+
+### NFL
+
+![NFL](images/nfl.png?raw=true "NFL"0)
+
+### NBA
+
+![NBA](images/nba.png?raw=true "NBA"0)
+
+### MLB
+
+![MLB](images/mlb.png?raw=true "MLB"0)
+
+### NHL
+
+![NHL](images/nhl.png?raw=true "NHL"0)
+
+### MLS
+
+![MLS](images/mls.png?raw=true "MLS"0)
+
+### NCAAFBS
+
+![NCAAFBS](images/ncaafbs.png?raw=true "NCAAFBS"0)
+
+### NCAAFCS
+
+![NCAAFCS](images/ncaafcs.png?raw=true "NCAAFCS"0)

@@ -27,28 +27,28 @@ Options available:
 
 ### NFL
 
-![NFL](images/nfl.png?raw=true "NFL"0)
+![NFL](images/nfl.png?raw=true "NFL")
 
 ### NBA
 
-![NBA](images/nba.png?raw=true "NBA"0)
+![NBA](images/nba.png?raw=true "NBA")
 
 ### MLB
 
-![MLB](images/mlb.png?raw=true "MLB"0)
+![MLB](images/mlb.png?raw=true "MLB")
 
 ### NHL
 
-![NHL](images/nhl.png?raw=true "NHL"0)
+![NHL](images/nhl.png?raw=true "NHL")
 
 ### MLS
 
-![MLS](images/mls.png?raw=true "MLS"0)
+![MLS](images/mls.png?raw=true "MLS")
 
 ### NCAAFBS
 
-![NCAAFBS](images/ncaafbs.png?raw=true "NCAAFBS"0)
+![NCAAFBS](images/ncaafbs.png?raw=true "NCAAFBS")
 
 ### NCAAFCS
 
-![NCAAFCS](images/ncaafcs.png?raw=true "NCAAFCS"0)
+![NCAAFCS](images/ncaafcs.png?raw=true "NCAAFCS")

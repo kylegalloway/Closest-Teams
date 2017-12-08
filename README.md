@@ -1,12 +1,12 @@
 # Closest-Teams
 
-This is a small project based on work being done by [Nathan Bingham](https://www.reddit.com/user/nbingham196).
+This is a small project based on work done by [Nathan Bingham](https://www.reddit.com/user/nbingham196).
 
-It finds the closest county to each team that is including in each league and presents the output to be imported into [this mapchart map](https://mapchart.net/usa-counties.html).
+It finds the closest county to each team that is in a given league and emits output that can be imported into [this mapchart map](https://mapchart.net/usa-counties.html).
 
-To generate the json for nhl teams:
+To generate the json for a given league:
 ```powershell
-python generate.py nhl
+python generate.py <league>
 ```
 
 To generate the json for nba teams output to a file:
@@ -14,7 +14,7 @@ To generate the json for nba teams output to a file:
 python generate.py nba > output.json
 ```
 
-Options available:
+League options available:
 * nfl
 * nba
 * mlb
@@ -23,7 +23,7 @@ Options available:
 * ncaafbs
 * ncaafcs
 
-Colors from [here](https://teamcolorcodes.com/). I tried to use contrasting in most places.
+Colors from [here](https://teamcolorcodes.com/). I tried to use contrasting colors in most places.
 
 ## Examples of output
 
